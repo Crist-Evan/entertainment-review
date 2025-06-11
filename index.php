@@ -1,9 +1,9 @@
 <?php
-    include 'connection.php';
-    
-    $query = "SELECT * FROM entertainment_reviews";
-    $result = mysqli_query($conn, $query);
-    $no = 1;
+  include 'connection.php';
+
+  $query = "SELECT * FROM entertainment_reviews";
+  $result = mysqli_query($conn, $query);
+  $no = 1;
 ?>
 
 <!DOCTYPE html>
@@ -19,33 +19,49 @@
       crossorigin="anonymous"
     />
   </head>
-  <body>
-    <h2>Review Hiburanmu!</h2>
-    <a href="addEntertain.php">Tambah</a>
-    <table class="table table-hover">
-      <tr>
-        <th>#</th>
-        <th>Nama</th>
-        <th>Kategori</th>
-        <th>Rating</th>
-        <th>Komentar</th>
-        <th>Aksi</th>
-      </tr>
-      <?php while ($entertain = mysqli_fetch_assoc($result)): ?>
-        <tr>
-          <td><?= $no ?></td>
-          <td><?= $entertain['name'] ?></td>
-          <td><?= $entertain['category'] ?></td>
-          <td><?= $entertain['rating'] ?></td>
-          <td><?= $entertain['review'] ?></td>
-          <td>
-            <a href="editEntertain.php?entertain_id=<?= $entertain['id'] ?>">Edit</a>
-            <a href="deleteEntertain.php?entertain_id=<?= $entertain['id'] ?>" onclick='return confirm("Hapus data ini?")'>Delete</a>
-          </td>
-        </tr>
-        <?php $no++; ?>
-      <?php endwhile; ?>
-    </table>
+  <body class="bg-light">
+    <div class="container py-5">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="mb-0">Review Hiburanmu</h2>
+        <a href="addEntertain.php" class="btn btn-primary">+ Tambah Review</a>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover align-middle bg-white">
+          <thead class="table-dark">
+            <tr>
+              <th style="width: 50px;">#</th>
+              <th>Nama</th>
+              <th>Kategori</th>
+              <th>Rating</th>
+              <th>Komentar</th>
+              <th style="width: 150px;">Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php while ($entertain = mysqli_fetch_assoc($result)): ?>
+              <tr>
+                <td><?= $no ?></td>
+                <td><?= htmlspecialchars($entertain['name']) ?></td>
+                <td><?= htmlspecialchars($entertain['category']) ?></td>
+                <td>
+                  <span class="badge bg-<?= $entertain['rating'] >= 4 ? 'success' : ($entertain['rating'] >= 3 ? 'warning text-dark' : 'danger') ?>">
+                    <?= $entertain['rating'] ?> / 5
+                  </span>
+                </td>
+                <td><?= nl2br(htmlspecialchars($entertain['review'])) ?></td>
+                <td>
+                  <a href="editEntertain.php?entertain_id=<?= $entertain['id'] ?>" class="btn btn-sm btn-warning">Edit</a>
+                  <a href="deleteEntertain.php?entertain_id=<?= $entertain['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Hapus data ini?')">Hapus</a>
+                </td>
+              </tr>
+              <?php $no++; ?>
+            <?php endwhile; ?>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
