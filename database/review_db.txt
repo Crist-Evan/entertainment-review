@@ -1,0 +1,7 @@
+CREATE TABLE entertainment_reviews (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,               -- Nama hiburan (judul anime, film, dll)
+    category ENUM('Anime', 'Komik', 'Film', 'Novel', 'Manga', 'Animation') NOT NULL,
+    rating TINYINT CHECK (rating BETWEEN 1 AND 5), -- Rating dari 1 sampai 5
+    review TEXT                                -- Komentar atau ulasan
+);
