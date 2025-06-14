@@ -28,7 +28,7 @@
     mysqli_stmt_bind_param($stmt, 'ssisi', $name, $category, $rating, $review, $entertain_id);
     mysqli_stmt_execute($stmt);
 
-    header("Location: index.php");
+    header("Location: dashboard.php");
     exit;
   }
 ?>
@@ -87,7 +87,7 @@
       </div>
 
       <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
-      <a href="index.php" class="btn btn-secondary">Batal</a>
+      <a href="dashboard.php" class="btn btn-secondary">Batal</a>
     </form>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>

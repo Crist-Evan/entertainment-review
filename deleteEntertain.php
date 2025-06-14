@@ -7,6 +7,6 @@
     mysqli_stmt_bind_param($stmt, 'i', $entertain_id);
     mysqli_stmt_execute($stmt);
 
-    header("Location: index.php");
+    header("Location: dashboard.php");
     exit;
 ?>

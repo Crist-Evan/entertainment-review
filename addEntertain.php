@@ -12,7 +12,7 @@
     mysqli_stmt_bind_param($stmt, 'ssis', $name, $category, $rating, $review);
     mysqli_stmt_execute($stmt);
 
-    header("Location: index.php");
+    header("Location: dashboard.php");
     exit;
   }
 ?>
@@ -74,7 +74,7 @@
             </div>
 
             <div class="d-flex justify-content-between">
-              <a href="index.php" class="btn btn-secondary">Kembali</a>
+              <a href="dashboard.php" class="btn btn-secondary">Kembali</a>
               <button type="submit" class="btn btn-primary">Tambah</button>
             </div>
           </form>
